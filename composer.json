@@ -1,0 +1,26 @@
+{
+    "name": "scancode/append-price-per-qty-module",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\AppendPricePerQty\\Providers\\AppendPricePerQtyServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\AppendPricePerQty\\": ""
+        }
+    },
+    "type": "laravel-module"
+}
