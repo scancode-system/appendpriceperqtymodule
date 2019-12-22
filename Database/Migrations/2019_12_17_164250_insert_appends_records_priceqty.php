@@ -16,7 +16,7 @@ class InsertAppendsRecordsPriceqty extends Migration
     public function up()
     {
         $validation = Validation::where('module_name', 'ValidationProduct')->first();
-        Append::create(['validation_id' => $validation->id, 'module' => 'AppendPricePerQty', 'alias' => 'Preço por Quantidade']);
+        Append::create(['validation_id' => $validation->id, 'module' => 'AppendPricePerQty', 'alias' => 'Preço por Quantidade (Produto)']);
     }
 
     /**
