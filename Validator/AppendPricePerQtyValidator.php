@@ -7,11 +7,16 @@ class AppendPricePerQtyValidator
 {
 
 	public function rule($data){
-		$fields = $this->fieldsPricePerQty($data);
+		$price_fields = $this->fieldsPriceQtyPrice($data);
+		$price_qtys = $this->fieldsPriceQtyQty($data);
+
 
 		$rules = [];
-		foreach ($fields as $field) {
+		foreach ($price_fields as $field) {
 			$rules[$field] = 'numeric|min:0|regex:/^\d+(\.\d{1,2})?$/'; 
+		}
+		foreach ($price_qtys as $field) {
+			$rules[$field] = 'integer|min:2'; 
 		}
 
 		return $rules;
@@ -19,10 +24,10 @@ class AppendPricePerQtyValidator
 
 	public function filterRules($data)
 	{
-		$fields = $this->fieldsPricePerQty($data);
+		$price_fields = $this->fieldsPriceQtyPrice($data);
 
 		$filters = collect([]);
-		foreach ($fields as $field) {
+		foreach ($price_fields as $field) {
 			$filters->push(['rule' => [$field => ['required', 'regex:/^(R\$)?( )?([1-9]{1}[\d]{0,2}(\.[\d]{3})*(\,[\d]{0,2})?|[1-9]{1}[\d]{0,}(\,[\d]{0,2})?|0(\,[\d]{0,2})?|(\,[\d]{1,2})?)$/']], 'filter' => 'currencyFormat']);
 		}
 
@@ -30,10 +35,20 @@ class AppendPricePerQtyValidator
 	}
 
 
-	private function fieldsPricePerQty($data){
+	private function fieldsPriceQtyPrice($data){
 		$fields = collect([]);
 		foreach ($data as $field => $value) {
-			if(preg_match('/\b(price_qty_\w*)\b/', $field)){
+			if(preg_match('/\b(price_qty_price_\w*)\b/', $field)){
+				$fields->push($field);
+			}
+		}
+		return $fields;
+	}
+
+	private function fieldsPriceQtyQty($data){
+		$fields = collect([]);
+		foreach ($data as $field => $value) {
+			if(preg_match('/\b(price_qty_qty_\w*)\b/', $field)){
 				$fields->push($field);
 			}
 		}

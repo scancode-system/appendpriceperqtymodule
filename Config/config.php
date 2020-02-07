@@ -1,13 +1,19 @@
 <?php
 
 return [
-    'name' => 'AppendPricePerQty', 
+	'name' => 'AppendPricePerQty', 
 	'fields' => [],
 	'sample' => [
 		[
-			'name' => 'price_qty_*',
-			'observation' => 'Preço promocional de acordo com a quantidade solicitada. Para configurar a quantidade troque o asterisco por um valor inteiro númerico. Caso queira adicionar mais preços promocionais criar uma nova coluna, com o mesmo titulo, mas com quantidade (*) diferente.',
+			'name' => 'price_qty_price_*',
+			'observation' => 'Coluna com o preço alternativo que irá variar de acordo com a quantidade. Substituir o asterisco por um valor numerico qualquer que seja compatível com alguma coluna "price_qty_qty_*".',
 			'sample_1' => '10',
+			'filled' => false
+		],
+		[
+			'name' => 'price_qty_qty_*',
+			'observation' => 'Coluna com a quantidade necessária para que o preço promocional seja aplicado.',
+			'sample_1' => '2',
 			'filled' => false
 		]
 	]
