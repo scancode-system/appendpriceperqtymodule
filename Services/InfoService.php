@@ -69,7 +69,7 @@ class InfoService extends InfoValidationService
 		return $fields;
 	}
 
-	public function columnsFormat()
+	public function columnsFormat($header)
 	{
 		return  [];
 	}
