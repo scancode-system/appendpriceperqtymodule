@@ -18,10 +18,10 @@ class InfoService extends InfoValidationService
 
 		$rules = [];
 		foreach ($price_fields as $field) {
-			$rules[$field] = 'numeric|min:0|regex:/^\d+(\.\d{1,2})?$/'; 
+			$rules[$field] = 'nullable|numeric|min:0|regex:/^\d+(\.\d{1,2})?$/'; 
 		}
 		foreach ($price_qtys as $field) {
-			$rules[$field] = 'integer|min:2'; 
+			$rules[$field] = 'nullable|integer|min:2'; 
 		}
 
 		return $rules;
